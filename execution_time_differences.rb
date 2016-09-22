@@ -88,23 +88,31 @@ list1 = [-5, -1, -3]
 p largest_contiguous_subsum(list1) # => -1 (from [-1])
 
 
+# STUDY NOTES:
+# the only reason we include negative numbers in the sum is because we want
+# what is before it
+
 # Phase 2
+# Let's make a better version. Write a new function using O(n) time
+# with O(1) memory. Keep a running tally of the largest sum.
+
+# O(1) memory because, though there are multiple variables, reduces to
+# 1 (there is not growing data structure)
+
 def largest_contiguous_subsum(list)
-  max = list.first
+  biggest_sum = 0
 
-  i1 = 0
-  sub_arrays = []
-    while i1 < list.length
-      i2 = i1
-      while i2 < list.length
-        current_max = list[i1..i2]
-        if current_max > max
-          max == current_max
-        end
-      i2 += 1
-      end
-      i1 += 1
+  temp_sum = 0
+
+  list.each_with_index do |num1, idx1|
+    if temp_sum + num1 <= 0
+      biggest_sum = temp_sum
+      temp_sum = 0
+      next
+    else
+      temp_sum += num1
     end
+  end
 
-  return max
+  biggest_sum
 end
