@@ -75,16 +75,16 @@ end
 #
 
 #phase 4
-#4n => n
+#4n => n (BIG O)
 def fourth_anagram?(word1, word2)
   hash1 = Hash.new { 0 }
   hash2 = Hash.new { 0 }
 
-  word1.split("").each do |l|   #n
+  word1.split("").each do |l|   #2n
     hash1[l] += 1
   end
 
-  word2.split("").each do |l|    #n
+  word2.split("").each do |l|    #2n
     hash2[l] += 1
   end
 
@@ -96,19 +96,19 @@ end
 # p fourth_anagram?("elvis", "lives")    #=> true
 # p fourth_anagram?("aelijsefliafaljsfljsljsflsesfafafafafjsfllaelijsefliafaljsfljsljsflsesfafafafafjsflljasljasl", "aelijaelijsefliafaljsfljsljsflsesfafafafafjsflljaslseflafafsfsfeljsfeefsfesfsfsefisljsfljs")
 
-
+#better space complexity
 def fifth_anagram?(word1, word2)
   hash1 = Hash.new { 0 }
 
-  word1.split("").each do |l|   #n
+  word1.split("").each do |l|   #2n
     hash1[l] += 1
   end
 
-  word2.split("").each do |l|    #n
+  word2.split("").each do |l|    #2n
     hash1[l] -= 1
   end
 
-  return true if hash1.all? {|k,v| v == 0}
+  return true if hash1.all? {|k,v| v == 0} #n
   false
 end
 
